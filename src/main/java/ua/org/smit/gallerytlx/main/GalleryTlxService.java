@@ -1,6 +1,5 @@
 package ua.org.smit.gallerytlx.main;
 
-import ua.org.smit.gallerytlx.importdata.ImportData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,27 +22,27 @@ import ua.org.smit.gallerytlx.user.photomodel.PhotomodelInfo;
 
 @Service
 public class GalleryTlxService implements GalleryTLX {
-    
+
     static Logger log = Logger.getLogger(GalleryTlxService.class);
-    
+
     private final AlbumInfoDAO albumInfoDAO = new AlbumInfoDAO(AlbumInfo.class);
     private final PhotomodelsDAO photomodelsDAO = new PhotomodelsDAO(PhotomodelInfo.class);
     private final ImageInfoDAO imageInfoDAO = new ImageInfoDAO(ImageInfo.class);
     private final TagDAO tagDAO = new TagDAO(Tag.class);
-    
+
     private final FolderCms galleryFolder;
-    
+
     public GalleryTlxService(FolderCms gallery, SessionFactory sessionFactory) {
         this.galleryFolder = gallery;
         HibernateUtil.setSessionFactory(sessionFactory);
     }
-    
+
     @Override
     public Album getAlbum(String alias) {
         log.info("Get album: " + alias);
         return new Album(galleryFolder, alias);
     }
-    
+
     @Override
     public List<Album> getAllAlbums() {
         List<Album> albums = new ArrayList<>();
@@ -52,7 +51,7 @@ public class GalleryTlxService implements GalleryTLX {
         }
         return albums;
     }
-    
+
     @Override
     public List<Album> getAlbumsByAliases(List<String> aliases) {
         List<Album> albums = new ArrayList<>();
@@ -61,50 +60,44 @@ public class GalleryTlxService implements GalleryTLX {
         }
         return albums;
     }
-    
-    @Override
-    public void importAlbum(ua.org.smit.gallerytlx.importdata.Album albumExport) {
-        ImportData importData = new ImportData();
-        importData.write(albumExport);
-    }
-    
+
     @Override
     public List<Integer> getAlbumsIds() {
         return albumInfoDAO.getAllIds();
     }
-    
+
     @Override
     public List<String> getAllAlbumAliases() {
         return albumInfoDAO.getAllAliases();
     }
-    
+
     @Override
     public List<PhotomodelInfo> getAllPhotomodelsInfos() {
         return this.photomodelsDAO.getAllWithAlbumsIds();
     }
-    
+
     @Override
     public List<ImageInfo> getImages(List<Integer> aliases) {
         List<ImageInfo> images = imageInfoDAO.getImagesByAliases(aliases);
-        
+
         for (ImageInfo image : images) {
             image.setAlbumInfo();
         }
-        
+
         return images;
     }
-    
+
     @Override
     public Photomodel getPhotomodel(String alias) {
         log.info("Get photomodel: '" + alias + "'");
         return new Photomodel(alias);
     }
-    
+
     @Override
     public List<AlbumInfo> getAlbumsByIds(List<Integer> albumsIds) {
         return this.albumInfoDAO.getByIds(albumsIds);
     }
-    
+
     @Override
     public Tag createTag(String name) {
         log.info("Create tag by name '" + name + "'");
@@ -112,12 +105,12 @@ public class GalleryTlxService implements GalleryTLX {
         tag.setName(name);
         return tagDAO.create(tag);
     }
-    
+
     @Override
     public List<ImageInfo> getImagesByAliases(List<Integer> aliases) {
         return this.imageInfoDAO.getImagesByAliases(aliases);
     }
-    
+
     @Override
     public Tag getTag(int id) {
         return tagDAO.findOne(id);
@@ -131,11 +124,11 @@ public class GalleryTlxService implements GalleryTLX {
     @Override
     public Optional<Tag> getTagByName(String name) {
         Optional<Tag> tag = this.tagDAO.findByName(name);
-        if (!tag.isPresent()){
+        if (!tag.isPresent()) {
             return Optional.empty();
         }
         tag.get().setAlbumsInfos();
         return tag;
     }
-    
+
 }

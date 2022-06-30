@@ -31,8 +31,7 @@ public class ImageInfo {
     private int likes;
 
     private int timeCounter;
-    
-    
+
 //    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 //    @JoinTable(
 //            name = "tag_imageinfo",
@@ -42,7 +41,6 @@ public class ImageInfo {
 //                @JoinColumn(name = "tag_id")}
 //    )
 //    private List<Tag> tags = new ArrayList<>();
-
     @Transient
     private AlbumInfo albumInfo;
     @Transient
@@ -121,7 +119,7 @@ public class ImageInfo {
         this.timeCounter = statistic.getTimeView();
     }
 
-    public void setAlbumInfo(){
+    public void setAlbumInfo() {
         this.albumInfo = albumInfoDAO.findOne(albumId);
     }
 

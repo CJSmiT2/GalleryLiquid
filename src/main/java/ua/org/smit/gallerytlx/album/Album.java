@@ -22,7 +22,7 @@ public class Album {
     private final AlbumInfoDAO dao = new AlbumInfoDAO(AlbumInfo.class);
 
     private final FolderCms selfFolder;
-    
+
     private final ImageListener listener;
 
     public Album(FolderCms galleryFolder, String alias) {
@@ -39,7 +39,7 @@ public class Album {
 
         this.selfFolder = new FolderCms(
                 galleryFolder + File.separator + info.getAlias());
-        
+
         listener = new ImageListener(images);
     }
 
@@ -68,17 +68,15 @@ public class Album {
     public ImageListener getListener() {
         return listener;
     }
-    
-    public void updateStatistic(){ // TMP!!!!!
-         List<ImageInfo> imagesTMP = this.images.getAllByAlbum();
-         for (ImageInfo image : imagesTMP){
-             info.setHits(info.getHits() + image.getHits());
-             info.setLikes(info.getLikes()+ image.getLikes());
-         }
-         info.setImagesCount(imagesTMP.size());
-         dao.update(info);
+
+    public void updateStatistic() { // TMP!!!!!
+        List<ImageInfo> imagesTMP = this.images.getAllByAlbum();
+        for (ImageInfo image : imagesTMP) {
+            info.setHits(info.getHits() + image.getHits());
+            info.setLikes(info.getLikes() + image.getLikes());
+        }
+        info.setImagesCount(imagesTMP.size());
+        dao.update(info);
     }
-    
-    
 
 }

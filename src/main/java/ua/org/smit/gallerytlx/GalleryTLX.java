@@ -26,19 +26,17 @@ public interface GalleryTLX {
     List<PhotomodelInfo> getAllPhotomodelsInfos();
 
     List<ImageInfo> getImages(List<Integer> ids);
-    
+
     List<ImageInfo> getImagesByAliases(List<Integer> aliases);
 
-    void importAlbum(ua.org.smit.gallerytlx.importdata.Album albumExport);
-
     Photomodel getPhotomodel(String alias);
-    
+
     Tag createTag(String name);
 
     Tag getTag(int id);
-    
+
     Optional<Tag> getTagByName(String name);
-    
+
     List<Tag> getAllTags();
 
 }

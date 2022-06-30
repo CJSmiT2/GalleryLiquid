@@ -9,7 +9,7 @@ public class TagDAO extends AbstractHibernateDAO<Tag> {
     public TagDAO(Class<Tag> aClass) {
         setClazz(aClass);
     }
-    
+
     public Optional<Tag> findByName(String name) {
         Optional<Tag> result = Optional.empty();
 

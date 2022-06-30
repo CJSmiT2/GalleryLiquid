@@ -30,7 +30,7 @@ public class AlbumInfo {
     private int likes;
 
     private int imagesCount;
-    
+
     public AlbumInfo() {
     }
 

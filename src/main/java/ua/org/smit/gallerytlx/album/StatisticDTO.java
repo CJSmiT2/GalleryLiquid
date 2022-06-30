@@ -1,6 +1,7 @@
 package ua.org.smit.gallerytlx.album;
 
 public class StatisticDTO {
+
     private int imageAlias;
     private int hits;
     private int likes;
@@ -42,7 +43,5 @@ public class StatisticDTO {
     public String toString() {
         return "StatisticDTO{" + "imageAlias=" + imageAlias + ", hits=" + hits + ", likes=" + likes + ", timeView=" + timeView + '}';
     }
-    
-    
-    
+
 }
