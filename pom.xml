@@ -8,7 +8,7 @@
     <dependencies>
         <dependency>
             <groupId>ua.org.smit</groupId>
-            <artifactId>CommonTLX</artifactId>
+            <artifactId>CommonLiquid</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>

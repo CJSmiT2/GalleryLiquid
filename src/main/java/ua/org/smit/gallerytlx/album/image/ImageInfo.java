@@ -122,5 +122,10 @@ public class ImageInfo {
     public void setAlbumInfo() {
         this.albumInfo = albumInfoDAO.findOne(albumId);
     }
+    
+    public int getTimeViewsMins(){
+        int seconds = timeCounter * 5;
+        return (seconds / 60); 
+    }
 
 }
