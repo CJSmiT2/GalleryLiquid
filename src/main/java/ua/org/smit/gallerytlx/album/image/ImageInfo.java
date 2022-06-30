@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import ua.org.smit.gallerytlx.album.AlbumInfo;
-import ua.org.smit.gallerytlx.album.StatisticDTO;
 import ua.org.smit.gallerytlx.hibarnate.AlbumInfoDAO;
 
 @Entity
@@ -113,12 +112,6 @@ public class ImageInfo {
         this.albumInfo = albumInfo;
     }
 
-    void addStatictic(StatisticDTO statistic) {
-        this.hits = statistic.getHits();
-        this.likes = statistic.getLikes();
-        this.timeCounter = statistic.getTimeView();
-    }
-
     public void setAlbumInfo() {
         this.albumInfo = albumInfoDAO.findOne(albumId);
     }
@@ -126,6 +119,10 @@ public class ImageInfo {
     public int getTimeViewsMins(){
         int seconds = timeCounter * 5;
         return (seconds / 60); 
+    }
+    
+    public int getHitsInthousands(){
+        return hits / 1000;
     }
 
 }

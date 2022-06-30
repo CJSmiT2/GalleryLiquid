@@ -110,9 +110,8 @@ public class AlbumInfo {
         this.imagesCount = imagesCount;
     }
 
-    void addStatistic(StatisticDTO statistic) {
-        this.hits += statistic.getHits();
-        this.likes += statistic.getLikes();
+    public int getHitsInThousends() {
+        return hits / 1000;
     }
 
 }

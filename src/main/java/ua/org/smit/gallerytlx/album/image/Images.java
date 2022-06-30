@@ -1,7 +1,6 @@
 package ua.org.smit.gallerytlx.album.image;
 
 import java.util.List;
-import ua.org.smit.gallerytlx.album.StatisticDTO;
 import ua.org.smit.gallerytlx.hibarnate.ImageInfoDAO;
 
 public class Images {
@@ -22,9 +21,4 @@ public class Images {
         return dao.getImagesByAlbum(albumId);
     }
 
-    public void addStatistic(StatisticDTO statistic) {
-        ImageInfo image = getByAlias(statistic.getImageAlias());
-        image.addStatictic(statistic);
-        dao.update(image);
-    }
 }

@@ -59,24 +59,8 @@ public class Album {
         return photomodels;
     }
 
-    public void addStatistics(StatisticDTO statistic) {
-        info.addStatistic(statistic);
-        images.addStatistic(statistic);
-        dao.update(info);
-    }
-
     public ImageListener getListener() {
         return listener;
-    }
-
-    public void updateStatistic() { // TMP!!!!!
-        List<ImageInfo> imagesTMP = this.images.getAllByAlbum();
-        for (ImageInfo image : imagesTMP) {
-            info.setHits(info.getHits() + image.getHits());
-            info.setLikes(info.getLikes() + image.getLikes());
-        }
-        info.setImagesCount(imagesTMP.size());
-        dao.update(info);
     }
 
 }
